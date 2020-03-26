@@ -25,7 +25,6 @@ public class Problem1 extends Problem{
     }
 
     public int returnSolution() {
-        System.out.println("this code ran");
         return multiplesOfBothCombined();
     }
 }
