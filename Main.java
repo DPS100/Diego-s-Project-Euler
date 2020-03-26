@@ -19,18 +19,19 @@ public class Main {
 
     public static void main(String[] args) {
 
-        buildScanner();
-        buildWriter();
+        tryTestProblem();
+        fillTextArray();
         addCompleteProblems();
         setupFile();
-        fillTextArray();
 
     }
 
     public static void fillTextArray() {
+        buildScanner();
         for(int x = 0; x < maxProblem; x++) {
             fileAsArray[x] = scanner.nextLine();
         }
+        scanner.close();
     }
 
     public static void buildScanner() {
@@ -52,12 +53,15 @@ public class Main {
     }
 
     public static void setupFile() {
+        buildWriter();
         try {
             for(int x = 1; x <= 697; x++) {
                 if(problems[x - 1] == null || !problems[x - 1].isProblemSolved()) {//if problem does not exist in array or is not solved,
                     writer.write("Problem " + x  + ": no solution\n");//write problem is not solved
-                } else if (problems[x - 1].isProblemSolved() && fileAsArray[x - 1] != ("Problem " + x + ": no solution")) {//problem is solved but has no displayed solution
+                } else if (fileAsArray[x - 1].equals("Problem " + x + ": no solution")) {//problem is solved but has no displayed solution
                     writer.write("Problem " + x + ": " + problems[x - 1].returnSolution() + "\n");//write in problem's solution
+                } else {//file is already written 
+                    writer.write(fileAsArray[x - 1] + "\n");//re-write solution
                 }
             }
             writer.close();
@@ -68,6 +72,11 @@ public class Main {
     }
 
     public static void addCompleteProblems() {
-        problems[0] = new Problem1();
+        problems[1 - 1] = new Problem1();
+        problems[2 - 1] = new Problem2();
+    }
+
+    public static void tryTestProblem() {
+        System.out.println(new Problem2().returnSolution());
     }
 }

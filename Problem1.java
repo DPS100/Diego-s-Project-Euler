@@ -7,12 +7,25 @@
  */
 public class Problem1 extends Problem{
     
+    private int max = 1000;
+
     public Problem1() {
         super(1);
         this.setSolve(true);
     }
 
+    private int multiplesOfBothCombined() {
+        int total = 0;
+        for(int i = 2; i < max; i ++) {
+            if(i % 3 == 0 || i % 5 == 0) {
+                total += i;
+            }
+        }
+        return total;
+    }
+
     public int returnSolution() {
-        return 1;
+        System.out.println("this code ran");
+        return multiplesOfBothCombined();
     }
 }
